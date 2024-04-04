@@ -7,7 +7,7 @@ from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 
-def process_the_data(file_name):
+def process_the_data(file_name) :
     nltk.download('stopwords')
     dataset = pd.read_csv(file_name, delimiter = ':')
     corpus = [] 

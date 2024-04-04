@@ -36,7 +36,7 @@ for el in response.xpath('//div[@data-review-id and @jsaction]'):
             'rating': rating
         })
 
-train_sample = open("train_sample.txt", "w+", encoding="utf-8")
+train_sample = open("train_sample.tsv", "w+", encoding="utf-8")
 train_sample.write("comment\trating\n")
 # print(results[0].get('comment') + "\t" + results[0].get('rating'))
 for value in results:

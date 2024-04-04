@@ -11,9 +11,10 @@ from sklearn.utils import shuffle
 sample = []
 
 def process_the_data(file_name) :
+    sample.clear()
     nltk.download('stopwords')
-    dataset = pd.read_csv(file_name, delimiter = ':')
-    X, y = shuffle(dataset['Comment'], dataset.iloc[:,1].values)
+    dataset = pd.read_csv(file_name, delimiter = '\t')
+    X, y = shuffle(dataset.iloc[:,0].values, dataset.iloc[:,1].values)
     corpus = []
     for i in range(len(X)):
         sample.append(X[i])
@@ -30,6 +31,6 @@ def process_the_data(file_name) :
         #добавляем в корпус
         corpus.append(comment) 
 
-    cv = CountVectorizer(max_features = 1500) 
+    cv = CountVectorizer(max_features = 500) 
     X = cv.fit_transform(corpus).toarray() 
     return X, y

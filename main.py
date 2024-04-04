@@ -1,3 +1,3 @@
 import classificator as cl
 
-cl.train(cl.neighbors)
+cl.train(cl.naive_bayes)

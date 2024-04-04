@@ -5,6 +5,7 @@ import nltk
 from nltk.corpus import stopwords 
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
 
 def process_the_data(file_name):
     nltk.download('stopwords')
@@ -27,4 +28,5 @@ def process_the_data(file_name):
     cv = CountVectorizer(max_features = 1500) 
     X = cv.fit_transform(corpus).toarray() 
     y = dataset.iloc[:,1].values
-    return X,y
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
+    return X_train, X_test, y_train, y_test

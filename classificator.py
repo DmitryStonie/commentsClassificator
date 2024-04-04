@@ -1,6 +1,7 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import SGDClassifier
+from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, accuracy_score
 from prettytable import PrettyTable
 import tsv_parser as par
@@ -31,13 +32,18 @@ def naive_bayes(X_train, y_train, X_test):
     return model.predict(X_test)
 
 def neighbors(X_train, y_train, X_test):
-    model = KNeighborsClassifier(5)
+    model = KNeighborsClassifier(3)
     model.fit(X_train, y_train)
     return model.predict(X_test)
 
 def SGD(X_train, y_train, X_test):
     model = SGDClassifier(max_iter=1000)
     model.fit(X_train, y_train)
+    return model.predict(X_test)
+
+def SVC(X_train, y_train, X_test):
+    model = LinearSVC()
+    model.fit(X_train,y_train)
     return model.predict(X_test)
 
 def train(model_func):

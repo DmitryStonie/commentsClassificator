@@ -1,6 +1,8 @@
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
@@ -44,8 +46,18 @@ def SGD(X_train, y_train, X_test):
     model.fit(X_train, y_train)
     return model.predict(X_test)
 
-def SVC(X_train, y_train, X_test):
+def linear_SVC(X_train, y_train, X_test):
     model = LinearSVC()
+    model.fit(X_train,y_train)
+    return model.predict(X_test)
+
+def decision_tree(X_train, y_train, X_test):
+    model = DecisionTreeClassifier()
+    model.fit(X_train,y_train)
+    return model.predict(X_test)
+
+def MLP(X_train, y_train, X_test):
+    model = MLPClassifier(hidden_layer_sizes=10,max_iter=1000)
     model.fit(X_train,y_train)
     return model.predict(X_test)
 

@@ -32,31 +32,37 @@ def print_results(num,y_test,predicted):
     print(table)
 
 def naive_bayes(X_train, y_train, X_test):
+    print("Наивный байесовский классификатор")
     model = MultinomialNB()
     model.fit(X_train, y_train)
     return model.predict(X_test)
 
 def neighbors(X_train, y_train, X_test):
+    print("Метод k-близжайших соседей")
     model = KNeighborsClassifier(5)
     model.fit(X_train, y_train)
     return model.predict(X_test)
 
 def SGD(X_train, y_train, X_test):
+    print("Метод градиентного спуска")
     model = SGDClassifier(max_iter=1000)
     model.fit(X_train, y_train)
     return model.predict(X_test)
 
 def linear_SVC(X_train, y_train, X_test):
+    print("Метод опорных векторов")
     model = LinearSVC()
     model.fit(X_train,y_train)
     return model.predict(X_test)
 
 def decision_tree(X_train, y_train, X_test):
+    print("Дерево решений")
     model = DecisionTreeClassifier()
     model.fit(X_train,y_train)
     return model.predict(X_test)
 
 def MLP(X_train, y_train, X_test):
+    print("Многослойный перцептрон")
     model = MLPClassifier(hidden_layer_sizes=10,max_iter=1000)
     model.fit(X_train,y_train)
     return model.predict(X_test)
@@ -77,8 +83,8 @@ def train(model_func):
     sns.heatmap(cm,
                 annot=True,
                 fmt='g',
-                xticklabels=['Плохо','Хорошо'],
-                yticklabels=['Плохо','Хорошо'])
+                xticklabels=['Негативный','Позитивный'],
+                yticklabels=['Негативный','Позитивный'])
     plt.ylabel('Prediction',fontsize=13)
     plt.xlabel('Actual',fontsize=13)
     plt.title('Confusion Matrix',fontsize=17)

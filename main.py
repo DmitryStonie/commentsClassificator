@@ -1,3 +1,3 @@
 import classificator as cl
 
-cl.train(cl.SVC)
+cl.train(cl.MLP)

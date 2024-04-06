@@ -5,7 +5,6 @@ import nltk
 from nltk.corpus import stopwords 
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
 sample = []
@@ -27,10 +26,11 @@ def process_the_data(file_name) :
         comment = [ps.stem(word) for word in comment
                 if not word in set(stopwords.words('russian'))] 
         #собираем строку обратно
-        comment = ' '.join(comment)  
+        comment = ' '.join(comment)
         #добавляем в корпус
-        corpus.append(comment) 
+        corpus.append(comment)
 
-    cv = CountVectorizer(max_features = 500) 
+    cv = CountVectorizer(max_features = 200)
+    #Векторизуем данные
     X = cv.fit_transform(corpus).toarray() 
     return X, y

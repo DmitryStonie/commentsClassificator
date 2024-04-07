@@ -8,7 +8,6 @@ from sklearn.metrics import classification_report, accuracy_score
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 from prettytable import PrettyTable
 import tsv_parser as par
 import datetime
@@ -42,7 +41,7 @@ def naive_bayes(X_train, y_train, X_test):
 
 def neighbors(X_train, y_train, X_test):
     print("Метод k-близжайших соседей")
-    model = KNeighborsClassifier(5)
+    model = KNeighborsClassifier(3)
     start = datetime.datetime.now()
     model.fit(X_train, y_train)
     end = datetime.datetime.now()

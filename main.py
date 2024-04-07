@@ -1,3 +1,3 @@
 import classificator as cl
 
-cl.train(cl.decision_tree)
+cl.train(cl.linear_SVC)

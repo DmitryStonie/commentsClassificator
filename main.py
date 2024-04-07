@@ -1,3 +1,3 @@
 import classificator as cl
 
-cl.train(cl.MLP)
+cl.train(cl.decision_tree)

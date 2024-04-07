@@ -5,15 +5,15 @@ import nltk
 from nltk.corpus import stopwords 
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
 sample = []
 
 def process_the_data(file_name) :
+    sample.clear()
     nltk.download('stopwords')
-    dataset = pd.read_csv(file_name, delimiter = ':')
-    X, y = shuffle(dataset['Comment'], dataset.iloc[:,1].values)
+    dataset = pd.read_csv(file_name, delimiter = '\t')
+    X, y = shuffle(dataset.iloc[:,0].values, dataset.iloc[:,1].values)
     corpus = []
     for i in range(len(X)):
         sample.append(X[i])
@@ -26,10 +26,11 @@ def process_the_data(file_name) :
         comment = [ps.stem(word) for word in comment
                 if not word in set(stopwords.words('russian'))] 
         #собираем строку обратно
-        comment = ' '.join(comment)  
+        comment = ' '.join(comment)
         #добавляем в корпус
-        corpus.append(comment) 
+        corpus.append(comment)
 
-    cv = CountVectorizer(max_features = 1500) 
+    cv = CountVectorizer(max_features = 200)
+    #Векторизуем данные
     X = cv.fit_transform(corpus).toarray() 
     return X, y
